@@ -45,15 +45,20 @@ if (isset($_SESSION["user_id"])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                  <li class="nav-item">
-                    <a class="nav-link" href="./home.php">Home</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="./books.php">Books</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="./about.php">About</a>
-                  </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="./home.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./books.php">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.php">About</a>
+                    </li>
+                    <?php if (isset($user)) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./reviews.php">Reviews</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
                 <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                   <li class="nav-item">

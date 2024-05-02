@@ -93,7 +93,7 @@ if (isset($_SESSION["user_id"])) {
           </div>
         </nav>
         <main>
-          <h1 class="fw-bold text-body-emphasis p-4">This is the About Page</h1>
+          <h1 class="fw-bold text-body-emphasis p-4">This is the Review Page</h1>
         </main>
     </body>
 </html>
