@@ -81,57 +81,59 @@ if (isset($_SESSION["user_id"])) {
             </div>
           </div>
         </nav>
-        <main>
-            <ul class="nav nav-tabs mb3" id="myTab">
-                <li class="nav-item">
-                    <a data-bs-toggle="tab" class="nav-link active" href="#account">Account</a>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="tab" class="nav-link" href="#balance">Balance</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="account">
-                    <div class="p-2">
-                        <h3 class="fw-bold text-body-emphasis" for="name">Name</h3>
-                        <p class="text-body"><?= htmlspecialchars($user["name"]) ?></p>
+        <div class="container">
+            <main>
+                <ul class="nav nav-tabs mb3" id="myTab">
+                    <li class="nav-item">
+                        <a data-bs-toggle="tab" class="nav-link active" href="#account">Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-bs-toggle="tab" class="nav-link" href="#balance">Balance</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="account">
+                        <div class="p-2">
+                            <h3 class="fw-bold text-body-emphasis" for="name">Name</h3>
+                            <p class="text-body"><?= htmlspecialchars($user["name"]) ?></p>
+                        </div>
+                        <div class="p-2">
+                            <h3 class="fw-bold text-body-emphasis" for="email">Email</h3>
+                            <p class="text-body"><?= htmlspecialchars($user["email"]) ?></p>
+                        </div>
+                        <div class="p-2">
+                            <h3 class="fw-bold text-body-emphasis" for="gender">Gender</h3>
+                            <p class="text-body"><?= htmlspecialchars($user["gender"]) ?></p>
+                        </div>
+                        <div class="p-2">
+                            <h3 class="fw-bold text-body-emphasis" for="phone_number">Phone Number</h3>
+                            <p class="text-body"><?= htmlspecialchars($user["phone_number"]) ?></p>
+                        </div>
+                        <div class="p-2">
+                            <h3 class="fw-bold text-body-emphasis" for="street_address">Street Address</h3>
+                            <p class="text-body"><?= htmlspecialchars($user["street_address"]) ?></p>
+                        </div>
                     </div>
-                    <div class="p-2">
-                        <h3 class="fw-bold text-body-emphasis" for="email">Email</h3>
-                        <p class="text-body"><?= htmlspecialchars($user["email"]) ?></p>
-                    </div>
-                    <div class="p-2">
-                        <h3 class="fw-bold text-body-emphasis" for="gender">Gender</h3>
-                        <p class="text-body"><?= htmlspecialchars($user["gender"]) ?></p>
-                    </div>
-                    <div class="p-2">
-                        <h3 class="fw-bold text-body-emphasis" for="phone_number">Phone Number</h3>
-                        <p class="text-body"><?= htmlspecialchars($user["phone_number"]) ?></p>
-                    </div>
-                    <div class="p-2">
-                        <h3 class="fw-bold text-body-emphasis" for="street_address">Street Address</h3>
-                        <p class="text-body"><?= htmlspecialchars($user["street_address"]) ?></p>
+                    <div class="tab-pane fade" id="balance">
+                        <div class="p-2">
+                            <h3 class="fw-bold text-body-emphasis" for="wallet_balance">Wallet Balance</h3>
+                            <?php if (isset($user["wallet_balance"])) : ?>
+                                <p class="text-body">$<?= htmlspecialchars($user["wallet_balance"]) ?></p>
+                            <?php else: ?>
+                                <p class="text-body">Wallet Not Set</p>
+                            <?php endif; ?>
+                        </div>
+                        <div class="p-2">
+                            <h3 class="fw-bold text-body-emphasis" for="can_borrow">Borrow Status</h3>
+                            <?php if ($user["can_borrow"]) : ?>
+                                <p class="text-body">Can Borrow</p>
+                            <?php else: ?>
+                                <p class="text-body">Cannot Borrow</p>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="balance">
-                    <div class="p-2">
-                        <h3 class="fw-bold text-body-emphasis" for="wallet_balance">Wallet Balance</h3>
-                        <?php if (isset($user["wallet_balance"])) : ?>
-                            <p class="text-body">$<?= htmlspecialchars($user["wallet_balance"]) ?></p>
-                        <?php else: ?>
-                            <p class="text-body">Wallet Not Set</p>
-                        <?php endif; ?>
-                    </div>
-                    <div class="p-2">
-                        <h3 class="fw-bold text-body-emphasis" for="can_borrow">Borrow Status</h3>
-                        <?php if ($user["can_borrow"]) : ?>
-                            <p class="text-body">Can Borrow</p>
-                        <?php else: ?>
-                            <p class="text-body">Cannot Borrow</p>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </body>
 </html>

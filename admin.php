@@ -88,85 +88,87 @@ if (isset($_SESSION["user_id"])) {
           </div>
         </nav>
         <main>
-            <ul class="nav nav-tabs mb3" id="myTab">
-                <li class="nav-item">
-                    <a data-bs-toggle="tab" class="nav-link active" href="#add_book">Add Book</a>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="tab" class="nav-link" href="#add_genre">Add Genre</a>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="tab" class="nav-link" href="#add_publisher">Add Publisher</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="add_book">
-                    <form action="process-book.php" method="post" id="addbook" novalidate> <!--novalidate because it is handles elsewhere-->
-                        <div class="p-2">
-                            <label class="form-label" for="title">Book Title</label>
-                            <input class="form-control" type="text" name="title" id="title">
-                        </div>
-                        <div class="p-2">
-                            <label class="form-label" for="isbn">ISBN</label>
-                            <input class="form-control" type="text" name="isbn" id="isbn">
-                        </div>
-                        <div class="p-2">
-                            <label class="form-label" for="publication_year">Publication Year</label>
-                            <input class="form-control" type="date" name="publication_year" id="publication_year">
-                        </div>
-                        <div class="p-2">
-                            <label class="form-label" for="genre_id">Genre</label>
-                            <select class="form-select" name="genre_id" id="genre_id">
-                                <option selected>Select</option>
-                                <?php while ($genres = mysqli_fetch_array($all_genres,MYSQLI_ASSOC)):;?>
-                                    <option value="<?php echo $genres["genre_id"];?>">
-                                        <?php echo $genres["genre_name"];?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
-                        <div class="p-2">
-                            <label class="form-label" for="author_id">Author</label>
-                            <select class="form-select" name="author_id" id="author_id">
-                                <option selected>Select</option>
-                                <?php while ($authors = mysqli_fetch_array($all_authors,MYSQLI_ASSOC)):;?>
-                                    <option value="<?php echo $authors["author_id"];?>">
-                                        <?php echo $authors["author_name"];?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
-                        <div class="p-2">
-                            <label class="form-label" for="publisher_id">Publisher</label>
-                            <select class="form-select" name="publisher_id" id="publisher_id">
-                                <option selected>Select</option>
-                                <?php while ($publishers = mysqli_fetch_array($all_publishers,MYSQLI_ASSOC)):;?>
-                                    <option value="<?php echo $publishers["publisher_id"];?>">
-                                        <?php echo $publishers["publisher_name"];?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
-                        <button class="btn btn-secondary p-2">Add Book</button>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="add_genre">
-                    <form action="process-genre.php" method="post" id="addpublisher" novalidate> <!--novalidate because it is handles elsewhere-->
-                        <div class="p-2">
-                            <label class="form-label" for="genre_name">Genre Name</label>
-                            <input class="form-control" type="text" name="genre_name" id="genre_name">
-                        </div>
-                        <button class="btn btn-secondary p-2">Add Genre</button>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="add_publisher">
-                    <form action="process-publisher.php" method="post" id="addpublisher" novalidate> <!--novalidate because it is handles elsewhere-->
-                        <div class="p-2">
-                            <label class="form-label" for="publisher_name">Publisher Name</label>
-                            <input class="form-control" type="text" name="publisher_name" id="publisher_name">
-                        </div>
-                        <button class="btn btn-secondary p-2">Add Publisher</button>
-                    </form>
+            <div class="container">
+                <ul class="nav nav-tabs mb3 g-5" id="myTab">
+                    <li class="nav-item">
+                        <a data-bs-toggle="tab" class="nav-link active" href="#add_book">Add Book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-bs-toggle="tab" class="nav-link" href="#add_genre">Add Genre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-bs-toggle="tab" class="nav-link" href="#add_publisher">Add Publisher</a>
+                    </li>
+                </ul>
+                <div class="tab-content g-5">
+                    <div class="tab-pane fade show active" id="add_book">
+                        <form action="process-book.php" method="post" id="addbook" novalidate> <!--novalidate because it is handles elsewhere-->
+                            <div class="p-2">
+                                <label class="form-label" for="title">Book Title</label>
+                                <input class="form-control" type="text" name="title" id="title">
+                            </div>
+                            <div class="p-2">
+                                <label class="form-label" for="isbn">ISBN</label>
+                                <input class="form-control" type="text" name="isbn" id="isbn">
+                            </div>
+                            <div class="p-2">
+                                <label class="form-label" for="publication_year">Publication Year</label>
+                                <input class="form-control" type="date" name="publication_year" id="publication_year">
+                            </div>
+                            <div class="p-2">
+                                <label class="form-label" for="genre_id">Genre</label>
+                                <select class="form-select" name="genre_id" id="genre_id">
+                                    <option selected>Select</option>
+                                    <?php while ($genres = mysqli_fetch_array($all_genres,MYSQLI_ASSOC)):;?>
+                                        <option value="<?php echo $genres["genre_id"];?>">
+                                            <?php echo $genres["genre_name"];?>
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+                            <div class="p-2">
+                                <label class="form-label" for="author_id">Author</label>
+                                <select class="form-select" name="author_id" id="author_id">
+                                    <option selected>Select</option>
+                                    <?php while ($authors = mysqli_fetch_array($all_authors,MYSQLI_ASSOC)):;?>
+                                        <option value="<?php echo $authors["author_id"];?>">
+                                            <?php echo $authors["author_name"];?>
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+                            <div class="p-2">
+                                <label class="form-label" for="publisher_id">Publisher</label>
+                                <select class="form-select" name="publisher_id" id="publisher_id">
+                                    <option selected>Select</option>
+                                    <?php while ($publishers = mysqli_fetch_array($all_publishers,MYSQLI_ASSOC)):;?>
+                                        <option value="<?php echo $publishers["publisher_id"];?>">
+                                            <?php echo $publishers["publisher_name"];?>
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+                            <button class="btn btn-secondary p-2">Add Book</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="add_genre">
+                        <form action="process-genre.php" method="post" id="addpublisher" novalidate> <!--novalidate because it is handles elsewhere-->
+                            <div class="p-2">
+                                <label class="form-label" for="genre_name">Genre Name</label>
+                                <input class="form-control" type="text" name="genre_name" id="genre_name">
+                            </div>
+                            <button class="btn btn-secondary p-2">Add Genre</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="add_publisher">
+                        <form action="process-publisher.php" method="post" id="addpublisher" novalidate> <!--novalidate because it is handles elsewhere-->
+                            <div class="p-2">
+                                <label class="form-label" for="publisher_name">Publisher Name</label>
+                                <input class="form-control" type="text" name="publisher_name" id="publisher_name">
+                            </div>
+                            <button class="btn btn-secondary p-2">Add Publisher</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </main>

@@ -97,8 +97,10 @@ if (isset($_SESSION["user_id"])) {
             </div>
           </div>
         </nav>
-        <main>
-          <h1 class="fw-bold text-body-emphasis p-4">This is the About Page</h1>
-        </main>
+        <div class="container">
+          <main>
+            <h1 class="fw-bold text-body-emphasis p-4">This is the About Page</h1>
+          </main>
+        </div>
     </body>
 </html>
