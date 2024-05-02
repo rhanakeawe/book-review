@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2024 at 11:05 AM
+-- Generation Time: May 02, 2024 at 10:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -126,14 +126,13 @@ CREATE TABLE `reviews` (
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `gender` varchar(30) NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
   `phone_number` int(10) NOT NULL,
   `street_address` varchar(255) NOT NULL,
-  `wallet_balance` decimal(10,2) DEFAULT NULL,
-  `can_borrow` tinyint(1) DEFAULT NULL,
+  `wallet_balance` decimal(15,2) DEFAULT NULL,
+  `can_borrow` tinyint(1) DEFAULT 1,
   `password_hash` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -141,8 +140,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `password`, `email`, `gender`, `is_admin`, `phone_number`, `street_address`, `wallet_balance`, `can_borrow`, `password_hash`) VALUES
-(1, 'Ted', '', 'ted@example.com', 'Male', 0, 123121234, '123 Butter Street', NULL, NULL, '$2y$10$aeHvagfTpAMXEccKbse.Uux/kvBDsXyn2otWSE1kyhhbIJkW7EgBq');
+INSERT INTO `user` (`id`, `name`, `email`, `gender`, `is_admin`, `phone_number`, `street_address`, `wallet_balance`, `can_borrow`, `password_hash`) VALUES
+(1, 'Ted', 'ted@example.com', 'Male', 0, 123121234, '123 Butter Street', NULL, 1, '$2y$10$aeHvagfTpAMXEccKbse.Uux/kvBDsXyn2otWSE1kyhhbIJkW7EgBq');
 
 --
 -- Indexes for dumped tables
