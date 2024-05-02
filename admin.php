@@ -90,13 +90,13 @@ if (isset($_SESSION["user_id"])) {
         <main>
             <ul class="nav nav-tabs mb3" id="myTab">
                 <li class="nav-item">
-                    <a data-bs-toggle="tab" class="nav-link active" href="#addbook">Add Book</a>
+                    <a data-bs-toggle="tab" class="nav-link active" href="#add_book">Add Book</a>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="tab" class="nav-link" href="#addgenre">Add Genre</a>
+                    <a data-bs-toggle="tab" class="nav-link" href="#add_genre">Add Genre</a>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="tab" class="nav-link" href="#addpublisher">Add Publisher</a>
+                    <a data-bs-toggle="tab" class="nav-link" href="#add_publisher">Add Publisher</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -150,23 +150,23 @@ if (isset($_SESSION["user_id"])) {
                         <button class="btn btn-secondary p-2">Add Book</button>
                     </form>
                 </div>
-                <div class="tab-pane fade" id="addgenre">
-                    <div class="p-2">
-                        <h3 class="fw-bold text-body-emphasis" for="wallet_balance">Wallet Balance</h3>
-                        <?php if (isset($user["wallet_balance"])) : ?>
-                            <p class="text-body">$<?= htmlspecialchars($user["wallet_balance"]) ?></p>
-                        <?php else: ?>
-                            <p class="text-body">Wallet Not Set</p>
-                        <?php endif; ?>
-                    </div>
-                    <div class="p-2">
-                        <h3 class="fw-bold text-body-emphasis" for="can_borrow">Borrow Status</h3>
-                        <?php if ($user["can_borrow"]) : ?>
-                            <p class="text-body">Can Borrow</p>
-                        <?php else: ?>
-                            <p class="text-body">Cannot Borrow</p>
-                        <?php endif; ?>
-                    </div>
+                <div class="tab-pane fade" id="add_genre">
+                    <form action="process-genre.php" method="post" id="addpublisher" novalidate> <!--novalidate because it is handles elsewhere-->
+                        <div class="p-2">
+                            <label class="form-label" for="genre_name">Genre Name</label>
+                            <input class="form-control" type="text" name="genre_name" id="genre_name">
+                        </div>
+                        <button class="btn btn-secondary p-2">Add Genre</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="add_publisher">
+                    <form action="process-publisher.php" method="post" id="addpublisher" novalidate> <!--novalidate because it is handles elsewhere-->
+                        <div class="p-2">
+                            <label class="form-label" for="publisher_name">Publisher Name</label>
+                            <input class="form-control" type="text" name="publisher_name" id="publisher_name">
+                        </div>
+                        <button class="btn btn-secondary p-2">Add Publisher</button>
+                    </form>
                 </div>
             </div>
         </main>
