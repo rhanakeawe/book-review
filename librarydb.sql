@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2024 at 10:10 PM
+-- Generation Time: May 03, 2024 at 12:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `librarydb`
 --
+CREATE DATABASE IF NOT EXISTS `librarydb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `librarydb`;
 
 -- --------------------------------------------------------
 
@@ -34,6 +36,13 @@ CREATE TABLE `authors` (
   `birth_year` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `authors`
+--
+
+INSERT INTO `authors` (`author_id`, `author_name`, `gender`, `birth_year`) VALUES
+(1, 'John Doe', 'Male', 1999);
+
 -- --------------------------------------------------------
 
 --
@@ -42,13 +51,20 @@ CREATE TABLE `authors` (
 
 CREATE TABLE `books` (
   `book_id` int(11) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `isbn` varchar(255) DEFAULT NULL,
-  `publication_year` date DEFAULT NULL,
-  `genre_id` int(11) DEFAULT NULL,
-  `author_id` int(11) DEFAULT NULL,
-  `publisher_id` int(11) DEFAULT NULL
+  `title` varchar(255) NOT NULL,
+  `isbn` varchar(255) NOT NULL,
+  `publication_year` date NOT NULL,
+  `genre_id` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `publisher_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`book_id`, `title`, `isbn`, `publication_year`, `genre_id`, `author_id`, `publisher_id`) VALUES
+(4, 'An Old Book', '123ASDFGJK', '1982-05-03', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -91,6 +107,19 @@ CREATE TABLE `genres` (
   `genre_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `genres`
+--
+
+INSERT INTO `genres` (`genre_id`, `genre_name`) VALUES
+(1, 'Romance'),
+(2, 'Mystery'),
+(3, 'Fantasy'),
+(4, 'Thriller'),
+(5, 'Young Adult'),
+(6, 'Children'),
+(7, 'Biography');
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +130,13 @@ CREATE TABLE `publishers` (
   `publisher_id` int(11) NOT NULL,
   `publisher_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `publishers`
+--
+
+INSERT INTO `publishers` (`publisher_id`, `publisher_name`) VALUES
+(1, 'Sunshine Org');
 
 -- --------------------------------------------------------
 
@@ -141,7 +177,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `gender`, `is_admin`, `phone_number`, `street_address`, `wallet_balance`, `can_borrow`, `password_hash`) VALUES
-(1, 'Ted', 'ted@example.com', 'Male', 0, 123121234, '123 Butter Street', NULL, 1, '$2y$10$aeHvagfTpAMXEccKbse.Uux/kvBDsXyn2otWSE1kyhhbIJkW7EgBq');
+(1, 'Ted', 'ted@example.com', 'Male', 0, 123121234, '123 Butter Street', NULL, 1, '$2y$10$aeHvagfTpAMXEccKbse.Uux/kvBDsXyn2otWSE1kyhhbIJkW7EgBq'),
+(2, 'admin', 'admin@example.com', 'Non-binary', 1, 123121234, 'admin', NULL, 1, '$2y$10$xJG3wOz8osFey8utpp93MOD8NytI5MAq4mCDMuoFyp.njPNk2dm5e');
 
 --
 -- Indexes for dumped tables
@@ -214,13 +251,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `book_copy`
@@ -238,13 +275,13 @@ ALTER TABLE `fees`
 -- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `genre_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `genre_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `publishers`
 --
 ALTER TABLE `publishers`
-  MODIFY `publisher_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `publisher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -256,7 +293,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
