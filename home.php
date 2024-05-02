@@ -68,6 +68,11 @@ if (isset($_SESSION["user_id"])) {
                             </svg> <?= htmlspecialchars($user["name"]) ?>
                         </a>
                     </li>
+                    <?php if ($user["can_borrow"]) : ?>
+                      <li class="nav-item">
+                        <a class="nav-link" href="./admin.php"> Admin </a>
+                      </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="./logout.php"> Log Out </a>
                     </li>

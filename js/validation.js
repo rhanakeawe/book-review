@@ -30,6 +30,16 @@ validation
             errorMessage: "email already taken"
         }
     ])
+    .addField("#street_address", [
+        {
+            rule: "required"
+        }
+    ])
+    .addField("#phone_number", [
+        {
+            rule: "required"
+        }
+    ])
     .addField("#password", [
         {
             rule: "required"
