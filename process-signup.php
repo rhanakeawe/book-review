@@ -10,6 +10,14 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     die("Invalid Email");
 }
 
+if (empty($_POST["street_address"])) {
+    die("Address is required");
+}
+
+if (empty($_POST["phone_number"])) {
+    die("Phone is required");
+}
+
 if (strlen($_POST["password"]) < 6) {
     die("Password must be at least 8 characters");
 }
@@ -36,8 +44,8 @@ $mysqli = require __DIR__ ."/database.php";
 
 # Inserts data into the database
 
-$sql = "INSERT INTO user (name, email, password_hash)
-        VALUES (?, ?, ?)";
+$sql = "INSERT INTO user (name, email, gender, street_address, phone_number, password_hash)
+        VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $mysqli->stmt_init();
 $stmt->prepare($sql);
 
@@ -49,7 +57,7 @@ if (! $stmt->prepare($sql)) {
 
 # Binds the string parameter to the SQL query
 # https://www.w3schools.com/php/php_mysql_prepared_statements.asp
-$stmt->bind_param("sss", $_POST["name"],$_POST["email"], $password_hash);
+$stmt->bind_param("ssssis", $_POST["name"],$_POST["email"], $_POST["gender"], $_POST["street_address"], $_POST["phone_number"], $password_hash);
 
 # Takes user to signup-success page
 

@@ -44,25 +44,44 @@
                 <!---   Connects to the process-signup.php    -->
                 <form action="process-signup.php" method="post" id="signup" novalidate> <!--novalidate because it is handles elsewhere-->
                     <div class="p-2">
-                        <label class="fom-label" for="name">Name</label>
+                        <label class="form-label" for="name">Name</label>
                         <input class="form-control" type="text" name="name" id="name">
                     </div>
         
                     <div class="p-2">
-                        <label class="fom-label" for="email">Email</label>
+                        <label class="form-label" for="email">Email</label>
                         <input class="form-control" type="email" name="email" id="email" placeholder="name@example.com">
+                    </div>
+
+                    <div class="p-2">
+                        <label class="form-label" for="gender">Gender</label>
+                        <select class="form-select" name="gender" id="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Non-binary">Non-binary</option>
+                        </select>
+                    </div>
+
+                    <div class="p-2">
+                        <label class="form-label" for="street_address">Street Address</label>
+                        <input class="form-control" type="text" name="street_address" id="street_address">
+                    </div>
+
+                    <div class="p-2">
+                        <label class="form-label" for="phone_number">Phone Number</label>
+                        <input class="form-control" type="number" name="phone_number" id="phone_number" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
                     </div>
         
                     <div class="p-2">
-                        <label class="fom-label" for="password">Password</label>
+                        <label class="form-label" for="password">Password</label>
                         <input class="form-control" type="password" name="password" id="password">
                     </div>
         
                     <div class="p-2">
-                        <label class="fom-label" for="password-confirmation">Repeat Password</label>
+                        <label class="form-label" for="password-confirmation">Repeat Password</label>
                         <input class="form-control" type="password" name="password-confirmation" id="password-confirmation">
                     </div>
-        
+
                     <button class="btn btn-secondary p-2">Sign up</button>
                 </form>
             </main>

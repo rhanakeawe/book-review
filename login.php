@@ -80,12 +80,12 @@
                 
                 <form method="post">
                     <div class="p-2">
-                        <label class="fom-label" for="email">Email</label>
+                        <label class="form-label" for="email">Email</label>
                         <input class="form-control" type="email" name="email" id="email" 
                                 value="<?= htmlspecialchars($_POST["email"] ?? "") ?>">
                     </div>
                     <div class="p-2">
-                        <label class="fom-label" for="password">Password</label>
+                        <label class="form-label" for="password">Password</label>
                         <input class="form-control" type="password" name="password" id="password">
                     </div>
                     <button class="btn btn-secondary p-2">Log in</button>

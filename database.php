@@ -3,7 +3,7 @@
 ## Connects pages to the database
 
 $host = "localhost";
-$dbname = "book_review";
+$dbname = "librarydb";
 $username = "root";
 $password = "";
 
