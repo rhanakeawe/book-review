@@ -94,6 +94,9 @@ if (isset($_SESSION["user_id"])) {
                         <a data-bs-toggle="tab" class="nav-link active" href="#add_book">Add Book</a>
                     </li>
                     <li class="nav-item">
+                        <a data-bs-toggle="tab" class="nav-link" href="#add_author">Add Author</a>
+                    </li>
+                    <li class="nav-item">
                         <a data-bs-toggle="tab" class="nav-link" href="#add_genre">Add Genre</a>
                     </li>
                     <li class="nav-item">
@@ -116,8 +119,8 @@ if (isset($_SESSION["user_id"])) {
                                 <input class="form-control" type="date" name="publication_year" id="publication_year">
                             </div>
                             <div class="p-2">
-                                <label class="form-label" for="genre_id">Genre</label>
-                                <select class="form-select" name="genre_id" id="genre_id">
+                                <label class="form-label" for="b_genre_id">Genre</label>
+                                <select class="form-select" name="b_genre_id" id="b_genre_id">
                                     <option selected>Select</option>
                                     <?php while ($genres = mysqli_fetch_array($all_genres,MYSQLI_ASSOC)):;?>
                                         <option value="<?php echo $genres["genre_id"];?>">
@@ -127,8 +130,8 @@ if (isset($_SESSION["user_id"])) {
                                 </select>
                             </div>
                             <div class="p-2">
-                                <label class="form-label" for="author_id">Author</label>
-                                <select class="form-select" name="author_id" id="author_id">
+                                <label class="form-label" for="b_author_id">Author</label>
+                                <select class="form-select" name="b_author_id" id="b_author_id">
                                     <option selected>Select</option>
                                     <?php while ($authors = mysqli_fetch_array($all_authors,MYSQLI_ASSOC)):;?>
                                         <option value="<?php echo $authors["author_id"];?>">
@@ -138,8 +141,8 @@ if (isset($_SESSION["user_id"])) {
                                 </select>
                             </div>
                             <div class="p-2">
-                                <label class="form-label" for="publisher_id">Publisher</label>
-                                <select class="form-select" name="publisher_id" id="publisher_id">
+                                <label class="form-label" for="b_publisher_id">Publisher</label>
+                                <select class="form-select" name="b_publisher_id" id="b_publisher_id">
                                     <option selected>Select</option>
                                     <?php while ($publishers = mysqli_fetch_array($all_publishers,MYSQLI_ASSOC)):;?>
                                         <option value="<?php echo $publishers["publisher_id"];?>">
@@ -151,8 +154,29 @@ if (isset($_SESSION["user_id"])) {
                             <button class="btn btn-secondary p-2">Add Book</button>
                         </form>
                     </div>
+                    <div class="tab-pane fade" id="add_author">
+                        <form action="process-author.php" method="post" id="addauthor" novalidate> <!--novalidate because it is handles elsewhere-->
+                            <div class="p-2">
+                                <label class="form-label" for="author_name">Author Name</label>
+                                <input class="form-control" type="text" name="author_name" id="author_name">
+                            </div>
+                            <div class="p-2">
+                                <label class="form-label" for="gender">Gender</label>
+                                <select class="form-select" name="gender" id="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Non-binary">Non-binary</option>
+                                </select>
+                            </div>
+                            <div class="p-2">
+                                <label class="form-label" for="birth_year">Birth Year</label>
+                                <input class="form-control" type="number" name="birth_year" id="birth_year">
+                            </div>
+                            <button class="btn btn-secondary p-2">Add Author</button>
+                        </form>
+                    </div>
                     <div class="tab-pane fade" id="add_genre">
-                        <form action="process-genre.php" method="post" id="addpublisher" novalidate> <!--novalidate because it is handles elsewhere-->
+                        <form action="process-genre.php" method="post" id="addgenre" novalidate> <!--novalidate because it is handles elsewhere-->
                             <div class="p-2">
                                 <label class="form-label" for="genre_name">Genre Name</label>
                                 <input class="form-control" type="text" name="genre_name" id="genre_name">

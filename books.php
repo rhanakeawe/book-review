@@ -11,9 +11,20 @@ if (isset($_SESSION["user_id"])) {
     # Gets user from database
     $sql = "SELECT * FROM user
             WHERE id = {$_SESSION["user_id"]}";
+
+    $sqlgenre = "SELECT genres.genre_name FROM books, genres WHERE books.b_genre_id = genres.genre_id";
+    $genre_names = $mysqli->query($sqlgenre);
+
+    $sqlauthor = "SELECT authors.author_name FROM books, authors WHERE books.b_author_id = authors.author_id";
+    $author_names = $mysqli->query($sqlauthor);
+
+    $sqlpublisher = "SELECT publishers.publisher_name FROM books, publishers WHERE books.b_publisher_id = publishers.publisher_id";
+    $publisher_names = $mysqli->query($sqlpublisher);
+    
+    $sqlbooks = "SELECT * FROM `books`";
+    $all_books = $mysqli->query($sqlbooks);
     
     $result = $mysqli->query($sql);
-
     $user = $result->fetch_assoc();
 }
 
@@ -99,7 +110,32 @@ if (isset($_SESSION["user_id"])) {
         </nav>
         <div class="container">
           <main>
-            <h1 class="fw-bold text-body-emphasis p-4">This is the Book Page</h1>
+            <div class="container text-center">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Publication Year</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Publisher</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php while ($books = mysqli_fetch_array($all_books,MYSQLI_ASSOC)):;?>
+                      <tr>
+                        <th scope="row"><?php echo $books["title"];?></th>
+                        <td><?php echo $books["isbn"];?></td>
+                        <td><?php echo $books["publication_year"];?></td>
+                        <td><?php echo $genre_names->fetch_assoc()["genre_name"];?></td>
+                        <td><?php echo $author_names->fetch_assoc()["author_name"];?></td>
+                        <td><?php echo $publisher_names->fetch_assoc()["publisher_name"];?></td>
+                      </tr>
+                  <?php endwhile; ?>
+                </tbody>
+              </table>
+            </div>
           </main>
         </div>
     </body>

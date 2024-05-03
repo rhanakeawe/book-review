@@ -99,7 +99,43 @@ if (isset($_SESSION["user_id"])) {
         </nav>
         <div class="container">
           <main>
-            <h1 class="fw-bold text-body-emphasis p-4">This is the About Page</h1>
+          <h1 class="fw-bold text-body-emphasis p-4">About Book Reviews</h1>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="about-section">
+                  <?php 
+                    // First half of about
+                    echo "<p>Welcome to Book Reviews</p>";
+                    echo "<p>Nestled within the virtual realms of cyberspace lies an enigmatic corner dedicated to the sanctuary of words, thoughts, and boundless imagination. Welcome to Book Reviews, where the tapestry of literary escapades intertwines with the infinite possibilities of the digital age. Here, amidst the pixels and code, stories breathe, characters dance, and pages whisper their tales to all who dare to listen.</p>";
+                    echo "<p>In the annals of digital history, there exists a legend of two intrepid souls who dared to dream beyond the confines of conventional wisdom. Enter Jonathan Reed and Emily Smith, kindred spirits united by their unwavering passion for literature and their insatiable thirst for adventure.</p>";
+                    echo "<p>Jonathan, a mild-mannered bibliophile with a penchant for tea and worn-out paperbacks, found solace in the pages of his favorite tomes, lost in worlds far removed from the humdrum of everyday life. Meanwhile, Emily, a spirited wordsmith with a knack for storytelling, spun tales that captivated hearts and stirred imaginations.</p>";
+                    echo "<p>It was on a fateful evening, amidst the flickering glow of a computer screen, that destiny intervened. Jonathan and Emily, virtual voyagers navigating the vast expanse of the internet, stumbled upon each other in the digital ether. Sparks flew, ideas ignited, and thus, the seeds of Book Reviews were sown.</p>";
+                    echo "<p>Time seemed to halt as they exchanged thoughts, their words flowing seamlessly through the interconnected web of cyberspace. Each keystroke felt like a step closer to unraveling the mysteries of literature and sharing their discoveries with the world. Jonathan, with his keen eye for detail, and Emily, with her boundless imagination, formed an unstoppable duo.</p>";
+                    echo "<p>As they delved deeper into their shared passion for books, their virtual encounters evolved into late-night discussions and collaborative projects. The virtual world became their canvas, where they painted vivid portraits of characters, dissected intricate plots, and pondered the deeper meanings hidden within the pages.</p>";
+                    echo "<p>With each review they crafted, they not only shared their insights but also forged connections with fellow book enthusiasts across the globe. Their humble corner of the internet blossomed into a vibrant community, united by a love for literature and a thirst for knowledge.</p>";
+                    echo "<p>Through the ups and downs of life, Jonathan and Emily found solace in their digital sanctuary, where the possibilities were as endless as the vast expanse of the literary world. Together, they embarked on a journey of exploration and discovery, uncovering hidden gems and championing the voices of both established authors and emerging talents.</p>";
+                    echo "<p>And so, as they look back on that fateful evening, they can't help but marvel at the serendipity that brought them together. What started as a chance encounter in the depths of cyberspace blossomed into a lifelong partnership fueled by their shared passion for literature and their unwavering belief in the power of words.</p>";
+                            ?>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="about-section">
+                  <?php 
+                    // Second half of about
+                    echo "<p>Fueled by their shared vision of creating a haven for bibliophiles across the globe, Jonathan and Emily embarked on a journey fraught with trials and triumphs. Armed with nothing but their love for literature and a dash of entrepreneurial spirit, they set out to bring their dream to life.</p>";
+                    echo "<p>Drawing inspiration from the hallowed halls of ancient libraries and the bustling marketplaces of yore, they envisioned a virtual sanctuary where bookworms of all shapes and sizes could converge, share their love for reading, and embark on literary adventures aplenty.</p>";
+                    echo "<p>Thus, Book Reviews was born—a digital oasis where readers could peruse an endless array of reviews, recommendations, and musings on the literary landscape. From timeless classics to hidden gems waiting to be discovered, no stone was left unturned in their quest to unearth the literary treasures of the world.</p>";
+                    echo "<p>As word of their endeavor spread like wildfire across the digital realm, readers far and wide flocked to Book Reviews in search of their next literary obsession. What began as a humble website soon blossomed into a thriving community, a melting pot of ideas, opinions, and shared enthusiasm for the written word.</p>";
+                    echo "<p>But with success came challenges, and Jonathan and Emily soon found themselves navigating treacherous waters fraught with competition, corporate intrigue, and the occasional rogue algorithm. Yet, fueled by their unwavering dedication and the unwavering support of their fellow bookworms, they persevered, weathering every storm that threatened to engulf their beloved haven.</p>";
+                    echo "<p>What sets Book Reviews apart from the myriad of literary hubs that dot the digital landscape, you ask? Ah, dear reader, the answer lies not in algorithms or analytics, but in the very heart and soul of this enchanted realm.</p>";
+                    echo "<p>For within the hallowed halls of Book Reviews, magic thrives in abundance, weaving its spell upon all who dare to venture within. It is a place where characters step off the page and into the hearts of readers, where stories transcend time and space to leave an indelible mark upon the tapestry of human experience.</p>";
+                    echo "<p>But beware, dear reader, for not all is as it seems within these digital walls. Whispers of hidden agendas, clandestine meetings, and the occasional literary conspiracy abound, adding a dash of intrigue to an otherwise idyllic landscape.</p>";
+                    echo "<p>And so, dear reader, we extend to you a heartfelt invitation to join us on this grand adventure. Whether you're a seasoned bibliophile or a fledgling bookworm taking your first tentative steps into the world of literature, there is a place for you within the hallowed halls of Book Reviews.</p>";
+                    echo "<p>Welcome to Book Reviews, where every page is a new beginning, and every story is a chance to escape reality and embrace the boundless wonders of the written word.</p>";
+                  ?>
+                </div>
+              </div>
+            </div>
           </main>
         </div>
     </body>
