@@ -12,6 +12,9 @@ if (isset($_SESSION["user_id"])) {
     $sql = "SELECT * FROM user
             WHERE id = {$_SESSION["user_id"]}";
 
+    $result = $mysqli->query($sql);
+    $user = $result->fetch_assoc();
+
     $sqlgenre = "SELECT genres.genre_name FROM books, genres WHERE books.b_genre_id = genres.genre_id";
     $genre_names = $mysqli->query($sqlgenre);
 
@@ -23,9 +26,6 @@ if (isset($_SESSION["user_id"])) {
     
     $sqlbooks = "SELECT * FROM `books`";
     $all_books = $mysqli->query($sqlbooks);
-    
-    $result = $mysqli->query($sql);
-    $user = $result->fetch_assoc();
 }
 
 ?>
@@ -63,11 +63,9 @@ if (isset($_SESSION["user_id"])) {
                 <li class="nav-item">
                     <a class="nav-link" href="./about.php">About</a>
                 </li>
-                <?php if (isset($user)) : ?>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./reviews.php">Reviews</a>
-                  </li>
-                <?php endif; ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="./reviews.php">Reviews</a>
+                </li>
               </ul>
               <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <?php if (isset($user)) : ?>
@@ -79,7 +77,7 @@ if (isset($_SESSION["user_id"])) {
                             </svg> <?= htmlspecialchars($user["name"]) ?>
                         </a>
                     </li>
-                    <?php if ($user["can_borrow"]) : ?>
+                    <?php if ($user["is_admin"]) : ?>
                       <li class="nav-item">
                         <a class="nav-link" href="./admin.php"> Admin </a>
                       </li>

@@ -52,11 +52,9 @@ if (isset($_SESSION["user_id"])) {
                 <li class="nav-item">
                     <a class="nav-link" href="./about.php">About</a>
                 </li>
-                <?php if (isset($user)) : ?>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./reviews.php">Reviews</a>
-                  </li>
-                <?php endif; ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="./reviews.php">Reviews</a>
+                </li>
               </ul>
               <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <?php if (isset($user)) : ?>
@@ -68,7 +66,7 @@ if (isset($_SESSION["user_id"])) {
                             </svg> <?= htmlspecialchars($user["name"]) ?>
                         </a>
                     </li>
-                    <?php if ($user["can_borrow"]) : ?>
+                    <?php if ($user["is_admin"]) : ?>
                       <li class="nav-item">
                         <a class="nav-link" href="./admin.php"> Admin </a>
                       </li>
