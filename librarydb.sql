@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2024 at 04:04 AM
+-- Generation Time: May 03, 2024 at 06:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -162,7 +162,7 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`review_id`, `r_book_id`, `r_user_id`, `rating`, `review_text`, `created_at`) VALUES
-(4, 4, 2, 5, 'This is an old book...', '2024-05-03 04:03:35');
+(5, 4, 2, 10, 'This is an old book...', '2024-05-03 04:18:39');
 
 -- --------------------------------------------------------
 
@@ -298,7 +298,7 @@ ALTER TABLE `publishers`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
