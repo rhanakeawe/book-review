@@ -13,8 +13,12 @@ if (isset($_SESSION["user_id"])) {
             WHERE id = {$_SESSION["user_id"]}";
     
     $result = $mysqli->query($sql);
-
     $user = $result->fetch_assoc();
+
+    $sqlreviews = "SELECT reviews.*, books.*, user.* FROM `reviews`
+                    INNER JOIN books on reviews.r_book_id = books.book_id
+                    INNER JOIN user on reviews.r_user_id = user.id";
+    $all_reviews = $mysqli->query($sqlreviews);
 }
 
 ?>
@@ -100,9 +104,29 @@ if (isset($_SESSION["user_id"])) {
             </div>
           </div>
         </nav>
-        <div class="container">
+        <div class="container my-5">
           <main>
-            <h1 class="fw-bold text-body-emphasis p-4">This is the Review Page</h1>
+            <div class="col">
+              <?php while ($reviews = mysqli_fetch_array($all_reviews,MYSQLI_ASSOC)):;?>
+              <div class="p-5 text-center bg-body-tertiary rounded-3">
+                <div class="row">
+                    <h1 class="fw-bold text-body-emphasis p-4"><?php echo $reviews["title"];?></h1>
+                    <div class="col-sm-1" style="width:20%">
+                      <p class="fw-bold">Username</p>
+                      <p class="text-body"><?php echo $reviews["name"];?></p>
+                      <p class="fw-bold">Gender</p>
+                      <p class="text-body"><?php echo $reviews["gender"];?></p>
+                      <p class="fw-bold">Rating</p>
+                      <p class="text-body"><?php echo $reviews["rating"];?></p>
+                    </div>
+                    <div class="col">
+                      <p class="fw-bold">Review</p>
+                      <p class="text-body"><?php echo $reviews["review_text"];?></p>
+                    </div>
+                </div>
+              </div>
+              <?php endwhile; ?>
+            </div>
           </main>
         </div>
     </body>
