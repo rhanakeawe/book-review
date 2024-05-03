@@ -100,11 +100,17 @@ if (isset($_SESSION["user_id"])) {
             </div>
           </div>
         </nav>
-        <div class="container">
+        <div class="container py-4">
           <main>
-            <h1 class="fw-bold text-body-emphasis p-4">This is the Home Page</h1>
+            <div class="card mb-4 bg-body-tertiary rounded-3">
+              <div class="card-body py-5">
+                  <h1 class="display-5 fw-bold">Get Started!</h1>
+                  <p class="card-text">Reading is a gateway to endless possibilities and a window into the vast depths of human experience. It allows us to explore new worlds, empathize with diverse perspectives, and expand our understanding of ourselves and others. Through reading, we can immerse ourselves in captivating stories, gain valuable knowledge, and cultivate critical thinking skills. Whether it's fiction or non-fiction, literature or academic texts, reading opens our minds, sparks our imagination, and enriches our lives in countless ways. In a world inundated with distractions, reading offers a unique opportunity for introspection, growth, and connection. So, delve into a book, and embark on a journey of discovery that knows no bounds.</p>
+                  <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+              </div>
+              <img src="./library.webp" class="card-img-bottom" alt="library">
+            </div>
           </main>
         </div>
-        
     </body>
 </html>
