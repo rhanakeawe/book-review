@@ -14,17 +14,11 @@ if (isset($_SESSION["user_id"])) {
 
     $result = $mysqli->query($sql);
     $user = $result->fetch_assoc();
-
-    $sqlgenre = "SELECT genres.genre_name FROM books, genres WHERE books.b_genre_id = genres.genre_id";
-    $genre_names = $mysqli->query($sqlgenre);
-
-    $sqlauthor = "SELECT authors.author_name FROM books, authors WHERE books.b_author_id = authors.author_id";
-    $author_names = $mysqli->query($sqlauthor);
-
-    $sqlpublisher = "SELECT publishers.publisher_name FROM books, publishers WHERE books.b_publisher_id = publishers.publisher_id";
-    $publisher_names = $mysqli->query($sqlpublisher);
     
-    $sqlbooks = "SELECT * FROM `books`";
+    $sqlbooks = "SELECT books.*, genres.*, authors.*, publishers.* FROM `books`
+                  INNER JOIN genres on books.b_genre_id = genres.genre_id
+                  INNER JOIN authors on books.b_author_id = authors.author_id
+                  INNER JOIN publishers on books.b_publisher_id = publishers.publisher_id";
     $all_books = $mysqli->query($sqlbooks);
 }
 
@@ -131,9 +125,9 @@ if (isset($_SESSION["user_id"])) {
                         <th scope="row"><?php echo $books["title"];?></th>
                         <td><?php echo $books["isbn"];?></td>
                         <td><?php echo $books["publication_year"];?></td>
-                        <td><?php echo $genre_names->fetch_assoc()["genre_name"];?></td>
-                        <td><?php echo $author_names->fetch_assoc()["author_name"];?></td>
-                        <td><?php echo $publisher_names->fetch_assoc()["publisher_name"];?></td>
+                        <td><?php echo $books["genre_name"];?></td>
+                        <td><?php echo $books["author_name"];?></td>
+                        <td><?php echo $books["publisher_name"];?></td>
                       </tr>
                   <?php endwhile; ?>
                 </tbody>
