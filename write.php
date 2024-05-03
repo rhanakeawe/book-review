@@ -12,8 +12,10 @@ if (isset($_SESSION["user_id"])) {
     $sql = "SELECT * FROM user
             WHERE id = {$_SESSION["user_id"]}";
     
+    $sqlbooks = "SELECT * FROM `books`";
+    $all_books = $mysqli->query($sqlbooks);
+    
     $result = $mysqli->query($sql);
-
     $user = $result->fetch_assoc();
 }
 
@@ -29,8 +31,6 @@ if (isset($_SESSION["user_id"])) {
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
-        <script src="/js/validation.js" defer></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-warning">
@@ -84,59 +84,33 @@ if (isset($_SESSION["user_id"])) {
             </div>
           </div>
         </nav>
-        <div class="container">
-            <main>
-                <ul class="nav nav-tabs mb3" id="myTab">
-                    <li class="nav-item">
-                        <a data-bs-toggle="tab" class="nav-link active" href="#account">Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a data-bs-toggle="tab" class="nav-link" href="#balance">Balance</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="account">
-                        <div class="p-2">
-                            <h3 class="fw-bold text-body-emphasis" for="name">Name</h3>
-                            <p class="text-body"><?= htmlspecialchars($user["name"]) ?></p>
-                        </div>
-                        <div class="p-2">
-                            <h3 class="fw-bold text-body-emphasis" for="email">Email</h3>
-                            <p class="text-body"><?= htmlspecialchars($user["email"]) ?></p>
-                        </div>
-                        <div class="p-2">
-                            <h3 class="fw-bold text-body-emphasis" for="gender">Gender</h3>
-                            <p class="text-body"><?= htmlspecialchars($user["gender"]) ?></p>
-                        </div>
-                        <div class="p-2">
-                            <h3 class="fw-bold text-body-emphasis" for="phone_number">Phone Number</h3>
-                            <p class="text-body"><?= htmlspecialchars($user["phone_number"]) ?></p>
-                        </div>
-                        <div class="p-2">
-                            <h3 class="fw-bold text-body-emphasis" for="street_address">Street Address</h3>
-                            <p class="text-body"><?= htmlspecialchars($user["street_address"]) ?></p>
-                        </div>
+        <main>
+            <div class="container">
+                <form action="process-review.php" method="post" id="writereview" novalidate> <!--novalidate because it is handles elsewhere-->
+                    <div class="p-2">
+                        <label class="form-label" for="r_book_id">Book</label>
+                        <select class="form-select" name="r_book_id" id="r_book_id">
+                            <option selected>Select</option>
+                            <?php while ($books = mysqli_fetch_array($all_books,MYSQLI_ASSOC)):;?>
+                                <option value="<?php echo $books["book_id"];?>">
+                                    <?php echo $books["title"];?>
+                                </option>
+                            <?php endwhile; ?>
+                        </select>
                     </div>
-                    <div class="tab-pane fade" id="balance">
-                        <div class="p-2">
-                            <h3 class="fw-bold text-body-emphasis" for="wallet_balance">Wallet Balance</h3>
-                            <?php if (isset($user["wallet_balance"])) : ?>
-                                <p class="text-body">$<?= htmlspecialchars($user["wallet_balance"]) ?></p>
-                            <?php else: ?>
-                                <p class="text-body">Wallet Not Set</p>
-                            <?php endif; ?>
-                        </div>
-                        <div class="p-2">
-                            <h3 class="fw-bold text-body-emphasis" for="can_borrow">Borrow Status</h3>
-                            <?php if ($user["can_borrow"]) : ?>
-                                <p class="text-body">Can Borrow</p>
-                            <?php else: ?>
-                                <p class="text-body">Cannot Borrow</p>
-                            <?php endif; ?>
-                        </div>
+                    <div class="p-2">
+                        <label class="form-label" for="rating">Rating</label>
+                        <input type="range" class="form-range" min="0" max="10" name = "rating" id="rating" onInput="$('#rangeval').html($(this).val())">
+                        <span id="rangeval">5<!-- Default value --></span>
+
                     </div>
-                </div>
-            </main>
-        </div>
+                    <div class="p-2">
+                        <label class="form-label" for="Review">Review</label>
+                        <textarea class="form-control" placeholder="Write a review" id="review_text" name="review_text" style="height: 200px"></textarea>
+                    </div>
+                    <button class="btn btn-secondary p-2">Write Review</button>
+                </form>
+            </div>
+        </main>
     </body>
 </html>

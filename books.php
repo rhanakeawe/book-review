@@ -66,6 +66,11 @@ if (isset($_SESSION["user_id"])) {
                 <li class="nav-item">
                   <a class="nav-link" href="./reviews.php">Reviews</a>
                 </li>
+                <?php if (isset($user)) : ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="./write.php">Write</a>
+                </li>
+                <?php endif; ?>
               </ul>
               <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <?php if (isset($user)) : ?>
