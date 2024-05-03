@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2024 at 12:33 AM
+-- Generation Time: May 03, 2024 at 02:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,9 +31,9 @@ USE `librarydb`;
 
 CREATE TABLE `authors` (
   `author_id` int(11) NOT NULL,
-  `author_name` varchar(255) DEFAULT NULL,
-  `gender` enum('Male','Female','Non-binary') DEFAULT NULL,
-  `birth_year` int(11) DEFAULT NULL
+  `author_name` varchar(255) NOT NULL,
+  `gender` enum('Male','Female','Non-binary') NOT NULL,
+  `birth_year` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,7 +41,9 @@ CREATE TABLE `authors` (
 --
 
 INSERT INTO `authors` (`author_id`, `author_name`, `gender`, `birth_year`) VALUES
-(1, 'John Doe', 'Male', 1999);
+(1, 'John Doe', 'Male', 1999),
+(2, 'Jane Doe', 'Female', 1997),
+(3, 'Finkerman', 'Male', 1967);
 
 -- --------------------------------------------------------
 
@@ -54,17 +56,19 @@ CREATE TABLE `books` (
   `title` varchar(255) NOT NULL,
   `isbn` varchar(255) NOT NULL,
   `publication_year` date NOT NULL,
-  `genre_id` int(11) NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `publisher_id` int(11) NOT NULL
+  `b_genre_id` int(11) NOT NULL,
+  `b_author_id` int(11) NOT NULL,
+  `b_publisher_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`book_id`, `title`, `isbn`, `publication_year`, `genre_id`, `author_id`, `publisher_id`) VALUES
-(4, 'An Old Book', '123ASDFGJK', '1982-05-03', 2, 1, 1);
+INSERT INTO `books` (`book_id`, `title`, `isbn`, `publication_year`, `b_genre_id`, `b_author_id`, `b_publisher_id`) VALUES
+(4, 'An Old Book', '123ASDFGJK', '1982-05-03', 2, 1, 1),
+(5, 'A Newer Book', 'KSDJFK123', '2024-05-01', 1, 1, 2),
+(6, 'Another Book', 'EROGFNO123', '2023-05-02', 3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -118,7 +122,8 @@ INSERT INTO `genres` (`genre_id`, `genre_name`) VALUES
 (4, 'Thriller'),
 (5, 'Young Adult'),
 (6, 'Children'),
-(7, 'Biography');
+(7, 'Biography'),
+(8, 'Adventure');
 
 -- --------------------------------------------------------
 
@@ -136,7 +141,8 @@ CREATE TABLE `publishers` (
 --
 
 INSERT INTO `publishers` (`publisher_id`, `publisher_name`) VALUES
-(1, 'Sunshine Org');
+(1, 'Sunshine Org'),
+(2, 'Dark Inc.');
 
 -- --------------------------------------------------------
 
@@ -146,11 +152,11 @@ INSERT INTO `publishers` (`publisher_id`, `publisher_name`) VALUES
 
 CREATE TABLE `reviews` (
   `review_id` int(11) NOT NULL,
-  `book_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `rating` int(11) DEFAULT NULL,
-  `review_text` text DEFAULT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
+  `book_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `review_text` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -196,9 +202,9 @@ ALTER TABLE `authors`
 ALTER TABLE `books`
   ADD PRIMARY KEY (`book_id`),
   ADD UNIQUE KEY `isbn` (`isbn`),
-  ADD KEY `genre_id` (`genre_id`),
-  ADD KEY `author_id` (`author_id`),
-  ADD KEY `publisher_id` (`publisher_id`);
+  ADD KEY `genre_id` (`b_genre_id`),
+  ADD KEY `author_id` (`b_author_id`),
+  ADD KEY `publisher_id` (`b_publisher_id`);
 
 --
 -- Indexes for table `book_copy`
@@ -251,13 +257,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `book_copy`
@@ -275,13 +281,13 @@ ALTER TABLE `fees`
 -- AUTO_INCREMENT for table `genres`
 --
 ALTER TABLE `genres`
-  MODIFY `genre_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `genre_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `publishers`
 --
 ALTER TABLE `publishers`
-  MODIFY `publisher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `publisher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -303,9 +309,9 @@ ALTER TABLE `user`
 -- Constraints for table `books`
 --
 ALTER TABLE `books`
-  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genres` (`genre_id`),
-  ADD CONSTRAINT `books_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `authors` (`author_id`),
-  ADD CONSTRAINT `books_ibfk_3` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`publisher_id`);
+  ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`b_genre_id`) REFERENCES `genres` (`genre_id`),
+  ADD CONSTRAINT `books_ibfk_2` FOREIGN KEY (`b_author_id`) REFERENCES `authors` (`author_id`),
+  ADD CONSTRAINT `books_ibfk_3` FOREIGN KEY (`b_publisher_id`) REFERENCES `publishers` (`publisher_id`);
 
 --
 -- Constraints for table `book_copy`
