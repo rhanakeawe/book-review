@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2024 at 02:58 AM
+-- Generation Time: May 03, 2024 at 04:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `librarydb`
 --
-CREATE DATABASE IF NOT EXISTS `librarydb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `librarydb`;
 
 -- --------------------------------------------------------
 
@@ -152,12 +150,19 @@ INSERT INTO `publishers` (`publisher_id`, `publisher_name`) VALUES
 
 CREATE TABLE `reviews` (
   `review_id` int(11) NOT NULL,
-  `book_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `r_book_id` int(11) NOT NULL,
+  `r_user_id` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
   `review_text` text NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`review_id`, `r_book_id`, `r_user_id`, `rating`, `review_text`, `created_at`) VALUES
+(4, 4, 2, 5, 'This is an old book...', '2024-05-03 04:03:35');
 
 -- --------------------------------------------------------
 
@@ -239,8 +244,8 @@ ALTER TABLE `publishers`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`review_id`),
-  ADD KEY `book_id` (`book_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `book_id` (`r_book_id`),
+  ADD KEY `user_id` (`r_user_id`);
 
 --
 -- Indexes for table `user`
@@ -293,7 +298,7 @@ ALTER TABLE `publishers`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -331,8 +336,8 @@ ALTER TABLE `fees`
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`r_book_id`) REFERENCES `books` (`book_id`),
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`r_user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
